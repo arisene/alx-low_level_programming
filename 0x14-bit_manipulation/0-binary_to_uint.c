@@ -1,29 +1,34 @@
 #include "main.h"
-#include <stddef.h>
-
 /**
- * Function that converts binary nmb into unsigned int 
- *
- * in case of any invalid input the out put is 0
- *
+ * binary_to_uint - function that converts a binary,
+ * number to an unsigned int.
+ * @b: const char
+ * Return: 0
  */
 
-unsigned int binary_to_uint(const char *b){
-	unsigned int result = 0;
+unsigned int binary_to_uint(const char *b)
+{
+	unsigned int res = 0;
+	int base = 1, i = 0;
 
+	if (b == NULL)
+		return (0);
 
-	if (b == NULL){
-		return 0;
+	while (b[i + 1])
+	{
+		if (b[i] != '0' && b[i] != '1')
+			return (0);
+		i++;
 	}
 
-	
-	for(; *b !='\0';b++){
-		if(*b != '0' && *b != '1'){
-			return 0;
-		}
-		result <<=1;
-		result+=(*b - '0');
+	while (i >= 0)
+	{
+		res += ((b[i] - '0') * base);
+		base *= 2;
+		i--;
 	}
 
-	return result;
+
+	return (res);
+
 }

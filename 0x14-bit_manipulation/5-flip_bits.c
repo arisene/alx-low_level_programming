@@ -1,16 +1,22 @@
 #include "main.h"
-
 /**
- * returns a number of bits you would need to flip to get from one nmb to another
+ * flip_bits - function that returns the number,
+ * of bits you would need to flip to,
+ * get from one number to another.
+ * @n: input
+ * @m: bits
+ * Return: 0
  */
 
 unsigned int flip_bits(unsigned long int n, unsigned long int m)
 {
-        unsigned long int xor_result = n ^ m;
-        unsigned int count = 0;
-        while (xor_result) {
-                count += xor_result & 1;
-                xor_result >>= 1;
-        }
-        return count;
+	unsigned long int xor = n ^ m, bits = 0;
+
+	while (xor > 0)
+	{
+		bits += (xor & 1);
+		xor >>= 1;
+	}
+
+	return (bits);
 }
